@@ -1,5 +1,6 @@
 name: Android CI Build
-permissions: write-all
+permissions: 
+  contents: write
 
 on:
   push:
