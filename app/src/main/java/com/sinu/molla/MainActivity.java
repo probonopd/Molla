@@ -557,7 +557,8 @@ public class MainActivity extends AppCompatActivity {
     private final Runnable hotelModeToggleRunnable = new Runnable() {
         @Override
         public void run() {
-            if (isArrowUpPressed && (System.currentTimeMillis() - arrowUpPressTime) >= HOTEL_MODE_TRIGGER_DURATION) {
+            // Check if key is still being pressed (not released early)
+            if (isArrowUpPressed) {
                 // Toggle hotel mode
                 isHotelMode = !isHotelMode;
                 pref.edit().putBoolean("hotel_mode", isHotelMode).apply();
