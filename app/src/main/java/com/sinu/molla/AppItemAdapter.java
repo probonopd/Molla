@@ -63,6 +63,7 @@ public class AppItemAdapter extends RecyclerView.Adapter<AppItemAdapter.ViewHold
         public final CardView cvCard;
         public final ImageView ivBanner;
         public final ImageView ivIcon;
+        private final android.content.SharedPreferences pref;
 
         public Intent intent = null;
         public boolean isEdit = false;
@@ -71,6 +72,7 @@ public class AppItemAdapter extends RecyclerView.Adapter<AppItemAdapter.ViewHold
 
         public ViewHolder(@NonNull View v) {
             super(v);
+            this.pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
 
             fvBody = v.findViewById(R.id.fv_appitem_body);
             cvCard = v.findViewById(R.id.cv_appitem_card);
@@ -86,7 +88,6 @@ public class AppItemAdapter extends RecyclerView.Adapter<AppItemAdapter.ViewHold
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
                 view.setZ(1f);
-                var pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
                 if (pref.getInt("draw_white_outline", 1) == 1) {
                     ivBanner.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
                 } else {

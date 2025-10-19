@@ -59,6 +59,7 @@ public class AppItemGridAdapter extends RecyclerView.Adapter<AppItemGridAdapter.
         public final CardView cvCard;
         public final ImageView ivBanner;
         public final ImageView ivIcon;
+        private final android.content.SharedPreferences pref;
 
         public Intent intent = null;
 
@@ -66,6 +67,7 @@ public class AppItemGridAdapter extends RecyclerView.Adapter<AppItemGridAdapter.
 
         public ViewHolder(@NonNull View v) {
             super(v);
+            this.pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
 
             fvBody = v.findViewById(R.id.fv_appitem_grid_body);
             cvCard = v.findViewById(R.id.cv_appitem_grid_card);
@@ -82,7 +84,6 @@ public class AppItemGridAdapter extends RecyclerView.Adapter<AppItemGridAdapter.
             if (hasFocus) {
                 view.setZ(1f);
                 if (!focused) cvCard.startAnimation(animScaleUp);
-                var pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
                 if (pref.getInt("draw_white_outline", 1) == 1) {
                     cvCard.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
                 } else {

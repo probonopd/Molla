@@ -44,10 +44,12 @@ public class AppItemCustomIntentExtraAdapter extends RecyclerView.Adapter<AppIte
         public final CheckBox cbValue;
         public final ImageView ivDelete;
         private final Context context;
+        private final android.content.SharedPreferences pref;
 
         public ViewHolder(@NonNull View v, Context context) {
             super(v);
             this.context = context;
+            this.pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
 
             btnName = v.findViewById(R.id.btn_custom_item_extra_name);
             btnType = v.findViewById(R.id.btn_custom_item_extra_type);
@@ -61,7 +63,6 @@ public class AppItemCustomIntentExtraAdapter extends RecyclerView.Adapter<AppIte
         @Override
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
-                var pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
                 if (pref.getInt("draw_white_outline", 1) == 1) {
                     view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
                 } else {

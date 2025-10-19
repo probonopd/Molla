@@ -53,10 +53,12 @@ public class AppItemOrderAdapter extends RecyclerView.Adapter<AppItemOrderAdapte
         public final ImageView ivUp;
         public final ImageView ivDown;
         private final Context context;
+        private final android.content.SharedPreferences pref;
 
         public ViewHolder(@NonNull View v, Context context) {
             super(v);
             this.context = context;
+            this.pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
 
             ivBanner = v.findViewById(R.id.iv_appitem_order_banner);
             ivIcon = v.findViewById(R.id.iv_appitem_order_icon);
@@ -80,7 +82,6 @@ public class AppItemOrderAdapter extends RecyclerView.Adapter<AppItemOrderAdapte
         @Override
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
-                var pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
                 if (pref.getInt("draw_white_outline", 1) == 1) {
                     view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
                 } else {

@@ -155,9 +155,11 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         public LinearLayout llProperty;
 
         public boolean isClickable = true;
+        private final android.content.SharedPreferences prefInstance;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.prefInstance = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
 
             tvPropertyTitle = itemView.findViewById(R.id.tv_settings_list_title);
             tvPropertyDesc = itemView.findViewById(R.id.tv_settings_list_desc);
@@ -190,8 +192,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         @Override
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
-                var pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
-                if (pref.getInt("draw_white_outline", 1) == 1) {
+                if (prefInstance.getInt("draw_white_outline", 1) == 1) {
                     view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
                 } else {
                     view.setForeground(null);
