@@ -47,12 +47,12 @@
     <string name="settings_autostart_at_boot_title">Molla beim Systemstart automatisch starten</string>
     <string name="settings_autostart_at_boot_desc">Starten Sie Molla automatisch nach dem Hochfahren des Geräts. Nützlich, wenn das Gerät nicht erlaubt, den Standard-Launcher zu ändern.</string>
     <string name="settings_orientation_title">Erzwungene Ausrichtung</string>
-    <string name="settings_orientation_desc">Erzwungene Ausrichtung von Molla festlegen. Kann Probleme verursachen. Funktioniert möglicherweise nicht auf einigen Geräten.</string>
+    <string name="settings_orientation_desc">Erzwungene Ausrichtung von Molla festlegen. Kann Probleme verursachen. Funktioniert möglicherweise nicht auf allen Geräten.</string>
     <string name="settings_category_autolaunch">Automatischer Start</string>
     <string name="settings_autolaunch_app_title">App automatisch starten</string>
-    <string name="settings_autolaunch_app_desc">Wenn festgelegt, wird die ausgewählte App automatisch gestartet, wenn Molla nach einem Neustart des Geräts zum ersten Mal gestartet wird. Funktioniert möglicherweise nicht auf einigen Geräten.</string>
+    <string name="settings_autolaunch_app_desc">Startet die ausgewählte App automatisch, wenn Molla nach einem Neustart des Geräts zum ersten Mal gestartet wird. Funktioniert möglicherweise nicht auf allen Geräten.</string>
     <string name="settings_autolaunch_delay_title">Verzögerung beim automatischen Start</string>
-    <string name="settings_autolaunch_delay_desc">Verzögern Sie den automatischen Start um festgelegte Sekunden. Der automatische Start kann während dieser Verzögerung abgebrochen werden.</string>
+    <string name="settings_autolaunch_delay_desc">Verzögert den automatischen Start um festgelegte Sekunden. Der automatische Start kann während dieser Verzögerung abgebrochen werden.</string>
     <string name="settings_autolaunch_alt_detect_title">Alternative Erkennung verwenden</string>
     <string name="settings_autolaunch_alt_detect_desc">Bei Geräten ohne Echtzeituhr funktioniert die Standard-Neustartserkennung möglicherweise nicht richtig. Versuchen Sie in diesem Fall, diese Option zu aktivieren. Ansonsten nicht empfohlen.</string>
     <string name="settings_category_about">Über</string>
@@ -60,11 +60,11 @@
     <string name="settings_about_secret_disabled">Alberne Einstellungen deaktiviert. Laden Sie den Einstellungsbildschirm neu, um die Änderungen zu übernehmen.</string>
     <string name="settings_category_system_settings">Schnellzugriff auf Systemeinstellungen</string>
     <string name="settings_open_system_settings">Systemeinstellungen</string>
-    <string name="settings_open_system_settings_desc">Öffnen Sie die Einstellungs-App.</string>
+    <string name="settings_open_system_settings_desc">Öffnet die Einstellungs-App.</string>
     <string name="settings_open_system_display">Anzeigeeinstellungen</string>
-    <string name="settings_open_system_display_desc">Öffnen Sie die Anzeigeeinstellungen.</string>
+    <string name="settings_open_system_display_desc">Öffnet die Anzeigeeinstellungen.</string>
     <string name="settings_open_system_apps">App-Einstellungen</string>
-    <string name="settings_open_system_apps_desc">Öffnen Sie die App-Einstellungen.</string>
+    <string name="settings_open_system_apps_desc">Öffnet die App-Einstellungen.</string>
     <string name="settings_autostart_at_boot_perm_title">Berechtigung erforderlich</string>
     <string name="settings_autostart_at_boot_perm_content">Diese Funktion erfordert eine spezielle Berechtigung. Bitte lesen Sie Folgendes sorgfältig durch.\n\nDurch Drücken der Schaltfläche \"OK\" gelangen Sie zu einem Bildschirm, auf dem Sie bestimmten Apps die Berechtigung erteilen können, über anderen Apps angezeigt zu werden.\n\nSuchen Sie Molla in der Liste und erteilen Sie die Berechtigung. Sobald die Berechtigung erteilt wurde, können Sie diese Funktion aktivieren.\n\nDrücken Sie \"OK\", um fortzufahren.</string>
     <string name="settings_error_wallpaper">Hintergrundbild wird auf diesem Gerät nicht unterstützt</string>
@@ -79,7 +79,7 @@
     <string name="dialog_customize_indicators_toggle_time">Zeit</string>
 
     <string name="dialog_orientation_title">Erzwungene Ausrichtung</string>
-    <string name="dialog_orientation_subtitle">Kann Probleme verursachen. Funktioniert möglicherweise nicht auf einigen Geräten. Wenn unsicher, auf \"Deaktivieren\" setzen.</string>
+    <string name="dialog_orientation_subtitle">Kann Probleme verursachen. Funktioniert möglicherweise nicht auf allen Geräten. Im Zweifelsfall auf \"Deaktivieren\" setzen.</string>
     <string name="dialog_orientation_disable">Deaktivieren</string>
     <string name="dialog_orientation_landscape">Querformat</string>
     <string name="dialog_orientation_portrait">Hochformat</string>
@@ -95,8 +95,8 @@
     <string name="dialog_autolaunch_delay_5s">5 Sekunden</string>
     <string name="dialog_autolaunch_delay_10s">10 Sekunden</string>
 
-    <string name="dialog_custom_item_title_create">Eine benutzerdefinierte Verknüpfung erstellen</string>
-    <string name="dialog_custom_item_title_edit">Eine benutzerdefinierte Verknüpfung bearbeiten</string>
+    <string name="dialog_custom_item_title_create">Benutzerdefinierte Verknüpfung erstellen</string>
+    <string name="dialog_custom_item_title_edit">Benutzerdefinierte Verknüpfung bearbeiten</string>
     <string name="dialog_custom_item_app">App</string>
     <string name="dialog_custom_item_title">Titel</string>
     <string name="dialog_custom_item_custom_banner">Banner</string>
