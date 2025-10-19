@@ -161,7 +161,16 @@ public class AppItemAdapter extends RecyclerView.Adapter<AppItemAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        if (shouldAddEditButton) return list.size() + 1;
+        if (shouldAddEditButton) {
+            // Check if hotel mode is enabled
+            if (activity instanceof MainActivity) {
+                MainActivity mainActivity = (MainActivity) activity;
+                if (mainActivity.isHotelMode()) {
+                    return list.size();
+                }
+            }
+            return list.size() + 1;
+        }
         return list.size();
     }
 
