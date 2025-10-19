@@ -382,6 +382,10 @@ public class MainActivity extends AppCompatActivity {
             binding.tvMainFavName.setVisibility(View.INVISIBLE);
         }
         h.removeCallbacks(rUpdateStatus);
+        h.removeCallbacks(hotelModeToggleRunnable);
+        // Reset hotel mode tracking when pausing
+        isArrowUpPressed = false;
+        arrowUpPressTime = 0;
     }
 
     @SuppressLint({"SourceLockedOrientationActivity", "NotifyDataSetChanged"})
@@ -531,9 +535,9 @@ public class MainActivity extends AppCompatActivity {
             if (!isArrowUpPressed) {
                 isArrowUpPressed = true;
                 arrowUpPressTime = System.currentTimeMillis();
-                h.postDelayed(this::checkHotelModeToggle, HOTEL_MODE_TRIGGER_DURATION);
+                h.postDelayed(hotelModeToggleRunnable, HOTEL_MODE_TRIGGER_DURATION);
             }
-            return true;
+            // Don't consume the event, let it propagate for normal navigation
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -543,19 +547,24 @@ public class MainActivity extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
             isArrowUpPressed = false;
             arrowUpPressTime = 0;
-            return true;
+            // Cancel the pending toggle check since key was released
+            h.removeCallbacks(hotelModeToggleRunnable);
+            // Don't consume the event, let it propagate for normal navigation
         }
         return super.onKeyUp(keyCode, event);
     }
 
-    private void checkHotelModeToggle() {
-        if (isArrowUpPressed && (System.currentTimeMillis() - arrowUpPressTime) >= HOTEL_MODE_TRIGGER_DURATION) {
-            // Toggle hotel mode
-            isHotelMode = !isHotelMode;
-            pref.edit().putBoolean("hotel_mode", isHotelMode).apply();
-            updateHotelModeUI();
+    private final Runnable hotelModeToggleRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (isArrowUpPressed && (System.currentTimeMillis() - arrowUpPressTime) >= HOTEL_MODE_TRIGGER_DURATION) {
+                // Toggle hotel mode
+                isHotelMode = !isHotelMode;
+                pref.edit().putBoolean("hotel_mode", isHotelMode).apply();
+                updateHotelModeUI();
+            }
         }
-    }
+    };
 
     private void updateHotelModeUI() {
         if (isHotelMode) {
