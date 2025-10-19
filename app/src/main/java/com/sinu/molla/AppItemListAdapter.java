@@ -37,17 +37,30 @@ public class AppItemListAdapter extends RecyclerView.Adapter<AppItemListAdapter.
         drawableGeneric = ContextCompat.getDrawable(context, simple ? R.drawable.generic_simple : R.drawable.generic);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnFocusChangeListener {
         public final ImageView ivBanner;
         public final ImageView ivIcon;
         public final TextView tvAppName;
+        private final Context context;
 
-        public ViewHolder(@NonNull View v) {
+        public ViewHolder(@NonNull View v, Context context) {
             super(v);
+            this.context = context;
 
             ivBanner = v.findViewById(R.id.iv_appitem_list_banner);
             ivIcon = v.findViewById(R.id.iv_appitem_list_icon);
             tvAppName = v.findViewById(R.id.tv_appitem_list_app_name);
+            
+            v.setOnFocusChangeListener(this);
+        }
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+            } else {
+                view.setForeground(null);
+            }
         }
     }
 
@@ -55,7 +68,7 @@ public class AppItemListAdapter extends RecyclerView.Adapter<AppItemListAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_appitem_list, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, context);
     }
 
     @Override

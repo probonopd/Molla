@@ -46,15 +46,17 @@ public class AppItemOrderAdapter extends RecyclerView.Adapter<AppItemOrderAdapte
         drawableGeneric = ContextCompat.getDrawable(context, simple ? R.drawable.generic_simple : R.drawable.generic);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnFocusChangeListener {
         public final ImageView ivBanner;
         public final ImageView ivIcon;
         public final TextView tvAppName;
         public final ImageView ivUp;
         public final ImageView ivDown;
+        private final Context context;
 
-        public ViewHolder(@NonNull View v) {
+        public ViewHolder(@NonNull View v, Context context) {
             super(v);
+            this.context = context;
 
             ivBanner = v.findViewById(R.id.iv_appitem_order_banner);
             ivIcon = v.findViewById(R.id.iv_appitem_order_icon);
@@ -71,6 +73,17 @@ public class AppItemOrderAdapter extends RecyclerView.Adapter<AppItemOrderAdapte
             ivDown.setOnClickListener((vw) -> {
                 downClickListener.onOrderItemClicked(vw, manager.getPosition(v));
             });
+            
+            v.setOnFocusChangeListener(this);
+        }
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+            } else {
+                view.setForeground(null);
+            }
         }
     }
 
@@ -78,7 +91,7 @@ public class AppItemOrderAdapter extends RecyclerView.Adapter<AppItemOrderAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_appitem_order, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, context);
     }
 
     @Override
