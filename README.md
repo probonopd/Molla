@@ -53,6 +53,8 @@ The built APKs will be available in:
 - `app/build/outputs/apk/debug/` - Debug APKs
 - `app/build/outputs/apk/release/` - Release APKs
 
+**Note:** Release APKs are signed with the Android debug keystore by default for local testing and development. This allows them to be installed via ADB without additional signing steps. For production releases to Google Play Store, configure a custom signing key.
+
 #### Multi-ABI Support
 The project is configured to build separate APKs for different CPU architectures:
 - **armeabi-v7a** - 32-bit ARM devices
