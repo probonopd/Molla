@@ -36,21 +36,34 @@ public class AppItemCustomIntentExtraAdapter extends RecyclerView.Adapter<AppIte
         this.dvc = dvc;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnFocusChangeListener {
         public final Button btnName;
         public final Button btnType;
         public final Button btnValue;
         public final CheckBox cbValue;
         public final ImageView ivDelete;
+        private final Context context;
 
-        public ViewHolder(@NonNull View v) {
+        public ViewHolder(@NonNull View v, Context context) {
             super(v);
+            this.context = context;
 
             btnName = v.findViewById(R.id.btn_custom_item_extra_name);
             btnType = v.findViewById(R.id.btn_custom_item_extra_type);
             btnValue = v.findViewById(R.id.btn_custom_item_extra_value);
             cbValue = v.findViewById(R.id.cb_custom_item_extra_value);
             ivDelete = v.findViewById(R.id.iv_custom_item_extra_delete);
+            
+            v.setOnFocusChangeListener(this);
+        }
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setForeground(androidx.core.content.ContextCompat.getDrawable(context, R.drawable.outline));
+            } else {
+                view.setForeground(null);
+            }
         }
     }
 
@@ -58,7 +71,7 @@ public class AppItemCustomIntentExtraAdapter extends RecyclerView.Adapter<AppIte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_custom_item_extra, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, context);
     }
 
     @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})

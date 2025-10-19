@@ -139,7 +139,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         for (MollaSetting s : settings) s.fetch(pref);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener, View.OnFocusChangeListener {
         public TextView tvPropertyTitle;
         public TextView tvPropertyDesc;
         public CheckBox cbPropertyCheck;
@@ -163,6 +163,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
+            itemView.setOnFocusChangeListener(this);
         }
 
         @Override
@@ -178,6 +179,15 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
             int idx = manager.getPosition(view);
             if (longClickListener != null) longClickListener.onSettingsLongClick(idx, settings[idx].key);
             return true;
+        }
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setForeground(androidx.core.content.ContextCompat.getDrawable(context, R.drawable.outline));
+            } else {
+                view.setForeground(null);
+            }
         }
     }
 

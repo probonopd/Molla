@@ -41,16 +41,18 @@ public class AppItemListSelectAdapter extends RecyclerView.Adapter<AppItemListSe
         drawableGeneric = ContextCompat.getDrawable(context, simple ? R.drawable.generic_simple : R.drawable.generic);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnFocusChangeListener {
         public final ImageView ivBanner;
         public final ImageView ivIcon;
         public final TextView tvAppName;
         public final CheckBox cbCheck;
+        private final Context context;
 
         public boolean focused = false;
 
-        public ViewHolder(@NonNull View v) {
+        public ViewHolder(@NonNull View v, Context context) {
             super(v);
+            this.context = context;
 
             ivBanner = v.findViewById(R.id.iv_appitem_list_select_banner);
             ivIcon = v.findViewById(R.id.iv_appitem_list_select_icon);
@@ -58,6 +60,16 @@ public class AppItemListSelectAdapter extends RecyclerView.Adapter<AppItemListSe
             cbCheck = v.findViewById(R.id.cb_appitem_list_select_check);
 
             v.setOnClickListener(itemClickListener);
+            v.setOnFocusChangeListener(this);
+        }
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+            } else {
+                view.setForeground(null);
+            }
         }
     }
 
@@ -65,7 +77,7 @@ public class AppItemListSelectAdapter extends RecyclerView.Adapter<AppItemListSe
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_appitem_list_select, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, context);
     }
 
     @Override

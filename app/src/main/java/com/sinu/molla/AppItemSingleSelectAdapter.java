@@ -41,21 +41,33 @@ public class AppItemSingleSelectAdapter extends RecyclerView.Adapter<AppItemSing
         selectedItem = item;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnFocusChangeListener {
         public final ImageView ivIcon;
         public final TextView tvAppName;
         public final RadioButton rbCheck;
+        private final Context context;
 
         public boolean focused = false;
 
-        public ViewHolder(@NonNull View v) {
+        public ViewHolder(@NonNull View v, Context context) {
             super(v);
+            this.context = context;
 
             ivIcon = v.findViewById(R.id.iv_appitem_single_select_icon);
             tvAppName = v.findViewById(R.id.tv_appitem_single_select_app_name);
             rbCheck = v.findViewById(R.id.rb_appitem_single_select_check);
 
             v.setOnClickListener(itemClickListener);
+            v.setOnFocusChangeListener(this);
+        }
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if (hasFocus) {
+                view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+            } else {
+                view.setForeground(null);
+            }
         }
     }
 
@@ -63,7 +75,7 @@ public class AppItemSingleSelectAdapter extends RecyclerView.Adapter<AppItemSing
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_appitem_single_select, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, context);
     }
 
     @Override
