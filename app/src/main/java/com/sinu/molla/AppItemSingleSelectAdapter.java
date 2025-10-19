@@ -46,12 +46,14 @@ public class AppItemSingleSelectAdapter extends RecyclerView.Adapter<AppItemSing
         public final TextView tvAppName;
         public final RadioButton rbCheck;
         private final Context context;
+        private final android.content.SharedPreferences pref;
 
         public boolean focused = false;
 
         public ViewHolder(@NonNull View v, Context context) {
             super(v);
             this.context = context;
+            this.pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
 
             ivIcon = v.findViewById(R.id.iv_appitem_single_select_icon);
             tvAppName = v.findViewById(R.id.tv_appitem_single_select_app_name);
@@ -64,7 +66,11 @@ public class AppItemSingleSelectAdapter extends RecyclerView.Adapter<AppItemSing
         @Override
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
-                view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                if (pref.getInt("draw_white_outline", 1) == 1) {
+                    view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                } else {
+                    view.setForeground(null);
+                }
             } else {
                 view.setForeground(null);
             }

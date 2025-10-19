@@ -38,6 +38,8 @@
     <string name="settings_simple_background_desc">Use a simple gray rectangle as the icon background.</string>
     <string name="settings_use_system_bar_title">Show System Bar</string>
     <string name="settings_use_system_bar_desc">Display System Bar on main screen.</string>
+    <string name="settings_draw_white_outline_title">Draw white outline</string>
+    <string name="settings_draw_white_outline_desc">For low-contrast devices, it might be hard to see the selected item. In that case, enable this option to draw a white outline around the selected item.</string>
     <string name="settings_category_behavior">Behavior</string>
     <string name="settings_hide_non_tv_apps_title">Hide Non-TV Apps</string>
     <string name="settings_hide_non_tv_apps_desc">Only show apps that can be run on Android TV.</string>

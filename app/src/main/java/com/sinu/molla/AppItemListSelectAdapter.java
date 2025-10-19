@@ -47,12 +47,14 @@ public class AppItemListSelectAdapter extends RecyclerView.Adapter<AppItemListSe
         public final TextView tvAppName;
         public final CheckBox cbCheck;
         private final Context context;
+        private final android.content.SharedPreferences pref;
 
         public boolean focused = false;
 
         public ViewHolder(@NonNull View v, Context context) {
             super(v);
             this.context = context;
+            this.pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
 
             ivBanner = v.findViewById(R.id.iv_appitem_list_select_banner);
             ivIcon = v.findViewById(R.id.iv_appitem_list_select_icon);
@@ -66,7 +68,11 @@ public class AppItemListSelectAdapter extends RecyclerView.Adapter<AppItemListSe
         @Override
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
-                view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                if (pref.getInt("draw_white_outline", 1) == 1) {
+                    view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                } else {
+                    view.setForeground(null);
+                }
             } else {
                 view.setForeground(null);
             }

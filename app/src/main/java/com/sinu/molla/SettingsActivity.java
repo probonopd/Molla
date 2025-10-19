@@ -92,6 +92,7 @@ public class SettingsActivity extends AppCompatActivity {
                 case "closeable":
                 case "simple_icon_bg":
                 case "use_system_bar":
+                case "draw_white_outline":
                 case "autolaunch_alt_detect":
                     adapter.settings[idx].fetch(pref);
                     if (adapter.settings[idx].value == 0) {
