@@ -32,6 +32,36 @@ or you can grab the APK from [here](https://github.com/sinusinu/Molla/releases/l
 
 Wallpaper is [Mountain dew during sunrise](https://unsplash.com/photos/mountain-dew-during-sunrise-xJ2tjuUHD9M) by Paul Earle.
 
+## Building from Source
+
+### Prerequisites
+- JDK 11 or higher
+- Android SDK (automatically downloaded by Gradle)
+
+### Build Instructions
+
+#### Using Gradle Wrapper (Recommended)
+```bash
+# Build debug APK
+./gradlew assembleDebug
+
+# Build release APK
+./gradlew assembleRelease
+```
+
+The built APKs will be available in:
+- `app/build/outputs/apk/debug/` - Debug APKs
+- `app/build/outputs/apk/release/` - Release APKs
+
+#### Multi-ABI Support
+The project is configured to build separate APKs for different CPU architectures:
+- **armeabi-v7a** - 32-bit ARM devices
+- **arm64-v8a** - 64-bit ARM devices
+- **universal** - APK that works on all architectures
+
+### GitHub Actions
+The project includes automated builds via GitHub Actions. On every push or pull request to the main branch, the workflow automatically builds both debug and release APKs for all supported architectures. Built APKs are available as artifacts in the Actions tab.
+
 ## License
 
 Molla is distributed under the GNU GPL v3.
