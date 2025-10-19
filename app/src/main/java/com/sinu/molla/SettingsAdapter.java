@@ -62,6 +62,11 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
                         MollaSetting.TYPE_CHECKBOX, "use_system_bar", true
                 ),
                 new MollaSetting(
+                        context.getString(R.string.settings_draw_white_outline_title),
+                        context.getString(R.string.settings_draw_white_outline_desc),
+                        MollaSetting.TYPE_CHECKBOX, "draw_white_outline", true
+                ),
+                new MollaSetting(
                         context.getString(R.string.settings_category_behavior),
                         null,
                         MollaSetting.TYPE_CATEGORY, null, false
@@ -185,7 +190,12 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         @Override
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
-                view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                var pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
+                if (pref.getInt("draw_white_outline", 1) == 1) {
+                    view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                } else {
+                    view.setForeground(null);
+                }
             } else {
                 view.setForeground(null);
             }

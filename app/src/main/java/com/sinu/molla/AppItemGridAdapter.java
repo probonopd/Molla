@@ -82,7 +82,12 @@ public class AppItemGridAdapter extends RecyclerView.Adapter<AppItemGridAdapter.
             if (hasFocus) {
                 view.setZ(1f);
                 if (!focused) cvCard.startAnimation(animScaleUp);
-                cvCard.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                var pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
+                if (pref.getInt("draw_white_outline", 1) == 1) {
+                    cvCard.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                } else {
+                    cvCard.setForeground(null);
+                }
                 focused = true;
                 selectedItem = manager.getPosition(view);
                 if (focusChangedListener != null) {

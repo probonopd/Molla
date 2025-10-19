@@ -86,7 +86,12 @@ public class AppItemAdapter extends RecyclerView.Adapter<AppItemAdapter.ViewHold
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
                 view.setZ(1f);
-                ivBanner.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                var pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
+                if (pref.getInt("draw_white_outline", 1) == 1) {
+                    ivBanner.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                } else {
+                    ivBanner.setForeground(null);
+                }
                 if (!focused) cvCard.startAnimation(animScaleUp);
                 focused = true;
                 selectedItem = manager.getPosition(view);

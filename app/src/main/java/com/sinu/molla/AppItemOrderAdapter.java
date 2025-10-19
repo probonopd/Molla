@@ -80,7 +80,12 @@ public class AppItemOrderAdapter extends RecyclerView.Adapter<AppItemOrderAdapte
         @Override
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
-                view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                var pref = context.getSharedPreferences("com.sinu.molla.settings", Context.MODE_PRIVATE);
+                if (pref.getInt("draw_white_outline", 1) == 1) {
+                    view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
+                } else {
+                    view.setForeground(null);
+                }
             } else {
                 view.setForeground(null);
             }
