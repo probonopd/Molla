@@ -19,7 +19,7 @@
     <string name="edit_reorder_empty">Nicht genügend Elemente zum Neuordnen</string>
 
     <string name="order_title">Symbole neu anordnen</string>
-    <string name="order_subtitle">Ändern Sie die Reihenfolge der Schnellzugriff-Symbole.</string>
+    <string name="order_subtitle">Reihenfolge der Schnellzugriff-Symbole ändern.</string>
 
     <string name="manage_custom_shortcuts_title">Benutzerdefinierte Verknüpfungen</string>
     <string name="manage_custom_shortcuts_back">Zurück</string>
@@ -30,11 +30,11 @@
     <string name="settings_title">Einstellungen</string>
     <string name="settings_category_appearance">Aussehen</string>
     <string name="settings_wallpaper_title">Eigenes Hintergrundbild festlegen</string>
-    <string name="settings_wallpaper_desc">Legen Sie das Hintergrundbild fest, das in Molla verwendet wird. Dies ändert *nicht* das System-Hintergrundbild. Langes Drücken dieses Menüs entfernt das Hintergrundbild.</string>
+    <string name="settings_wallpaper_desc">Legt das Hintergrundbild fest, das in Molla verwendet wird. Dies ändert *nicht* das System-Hintergrundbild. Langes Drücken dieses Menüs entfernt das Hintergrundbild.</string>
     <string name="settings_customize_indicator_title">Indikatoren anpassen</string>
-    <string name="settings_customize_indicator_desc">Legen Sie fest, welcher Indikator auf dem Hauptbildschirm angezeigt werden soll.</string>
+    <string name="settings_customize_indicator_desc">Legt fest, welcher Indikator auf dem Hauptbildschirm angezeigt werden soll.</string>
     <string name="settings_simple_background_title">Einfacher Symbol-Hintergrund</string>
-    <string name="settings_simple_background_desc">Verwenden Sie ein einfaches graues Rechteck als Symbol-Hintergrund.</string>
+    <string name="settings_simple_background_desc">Einfaches graues Rechteck als Symbol-Hintergrund verwenden.</string>
     <string name="settings_use_system_bar_title">Systemleiste anzeigen</string>
     <string name="settings_use_system_bar_desc">Systemleiste auf dem Hauptbildschirm anzeigen.</string>
     <string name="settings_draw_white_outline_title">Weiße Umrandung zeichnen</string>
@@ -45,7 +45,7 @@
     <string name="settings_closeable_title">Schließen erlauben</string>
     <string name="settings_closeable_desc">Molla kann durch Drücken von Zurück auf dem Hauptbildschirm geschlossen werden. Nützlich, wenn Molla als Hilfs-Launcher verwendet wird.</string>
     <string name="settings_autostart_at_boot_title">Molla beim Systemstart automatisch starten</string>
-    <string name="settings_autostart_at_boot_desc">Starten Sie Molla automatisch nach dem Hochfahren des Geräts. Nützlich, wenn das Gerät nicht erlaubt, den Standard-Launcher zu ändern.</string>
+    <string name="settings_autostart_at_boot_desc">Startet Molla automatisch nach dem Hochfahren des Geräts. Nützlich, wenn das Gerät nicht erlaubt, den Standard-Launcher zu ändern.</string>
     <string name="settings_orientation_title">Erzwungene Ausrichtung</string>
     <string name="settings_orientation_desc">Erzwungene Ausrichtung von Molla festlegen. Kann Probleme verursachen. Funktioniert möglicherweise nicht auf allen Geräten.</string>
     <string name="settings_category_autolaunch">Automatischer Start</string>
@@ -66,7 +66,7 @@
     <string name="settings_open_system_apps">App-Einstellungen</string>
     <string name="settings_open_system_apps_desc">Öffnet die App-Einstellungen.</string>
     <string name="settings_autostart_at_boot_perm_title">Berechtigung erforderlich</string>
-    <string name="settings_autostart_at_boot_perm_content">Diese Funktion erfordert eine spezielle Berechtigung. Bitte lesen Sie Folgendes sorgfältig durch.\n\nDurch Drücken der Schaltfläche \"OK\" gelangen Sie zu einem Bildschirm, auf dem Sie bestimmten Apps die Berechtigung erteilen können, über anderen Apps angezeigt zu werden.\n\nSuchen Sie Molla in der Liste und erteilen Sie die Berechtigung. Sobald die Berechtigung erteilt wurde, können Sie diese Funktion aktivieren.\n\nDrücken Sie \"OK\", um fortzufahren.</string>
+    <string name="settings_autostart_at_boot_perm_content">Diese Funktion erfordert eine spezielle Berechtigung. Bitte lesen Sie Folgendes sorgfältig durch.\n\nDurch Drücken von \"OK\" gelangen Sie zu einem Bildschirm, auf dem Sie bestimmten Apps die Berechtigung erteilen können, über anderen Apps angezeigt zu werden.\n\nSuchen Sie Molla in der Liste und erteilen Sie die Berechtigung. Sobald die Berechtigung erteilt wurde, können Sie diese Funktion aktivieren.\n\nDrücken Sie \"OK\", um fortzufahren.</string>
     <string name="settings_error_wallpaper">Hintergrundbild wird auf diesem Gerät nicht unterstützt</string>
     <string name="settings_error_wallpaper_no_picker">Sie benötigen eine Bild-Viewer-App, um diese Aktion auszuführen!</string>
     <string name="settings_error_settings_no_activity">Diese Einstellung ist auf diesem Gerät nicht verfügbar!</string>
@@ -123,7 +123,7 @@
     <string name="dialog_custom_item_activity_list_title">Zu startende Aktivität</string>
     <string name="dialog_custom_item_activity_list_subtitle">WARNUNG: Das Festlegen dieser Option kann gefährlich sein. Wenn Sie unsicher sind, wählen Sie (Standard).</string>
     <string name="dialog_custom_item_activity_list_default">(Standard)</string>
-    <string name="dialog_custom_item_edit_title_subtitle">Lassen Sie es leer, um den Standardtitel zu verwenden.</string>
+    <string name="dialog_custom_item_edit_title_subtitle">Leer lassen, um den Standardtitel zu verwenden.</string>
     <string name="dialog_custom_item_error_invalid_banner">Bild konnte nicht geladen werden!</string>
     <string name="dialog_custom_item_error_app_not_set">App muss festgelegt werden!</string>
     <string name="dialog_custom_item_error_invalid_extra_value">Wert ist ungültig!</string>
