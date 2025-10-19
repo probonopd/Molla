@@ -2,9 +2,7 @@ name: Android CI Build
 
 on:
   push:
-    branches: [main, master]
   pull_request:
-    branches: [main, master]
   workflow_dispatch:
 
 jobs:
@@ -52,3 +50,11 @@ jobs:
         with:
           name: release-apk
           path: app/build/outputs/apk/release/*.apk
+
+      - name: Upload APKs to GitHub Releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+          bash upload.sh app/build/outputs/apk/*/*.apk
