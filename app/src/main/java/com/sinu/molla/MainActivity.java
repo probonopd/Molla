@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.format.DateFormat;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -74,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
     AppItem autoLaunchTarget = null;
     boolean isWaitingForAutoLaunch = false;
     int autoLaunchCountdown = 0;
+
+    // Hotel mode tracking
+    private long arrowUpPressTime = 0;
+    private boolean isArrowUpPressed = false;
+    private boolean isHotelMode = false;
+    private static final long HOTEL_MODE_TRIGGER_DURATION = 5000; // 5 seconds in milliseconds
+
+    public boolean isHotelMode() {
+        return isHotelMode;
+    }
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -371,12 +382,19 @@ public class MainActivity extends AppCompatActivity {
             binding.tvMainFavName.setVisibility(View.INVISIBLE);
         }
         h.removeCallbacks(rUpdateStatus);
+        h.removeCallbacks(hotelModeToggleRunnable);
+        // Reset hotel mode tracking when pausing
+        isArrowUpPressed = false;
+        arrowUpPressTime = 0;
     }
 
     @SuppressLint({"SourceLockedOrientationActivity", "NotifyDataSetChanged"})
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Load hotel mode state
+        isHotelMode = pref.getBoolean("hotel_mode", false);
 
         // check if device rebooted (normal)
         if (pref.getInt("autolaunch_alt_detect", 0) == 0) {
@@ -472,6 +490,9 @@ public class MainActivity extends AppCompatActivity {
         rUpdateStatus.run();
 
         isCloseable = (pref.getInt("closeable", 0) == 1);
+
+        // Apply hotel mode UI state
+        updateHotelModeUI();
     }
 
     @SuppressLint("SetTextI18n")
@@ -505,6 +526,60 @@ public class MainActivity extends AppCompatActivity {
             binding.lvMainSettings.setFocusable(true);
             binding.llMainAutolaunchOverlay.setVisibility(View.GONE);
             binding.lvMainAll.requestFocus();
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+            if (!isArrowUpPressed) {
+                isArrowUpPressed = true;
+                arrowUpPressTime = System.currentTimeMillis();
+                h.postDelayed(hotelModeToggleRunnable, HOTEL_MODE_TRIGGER_DURATION);
+            }
+            // Don't consume the event, let it propagate for normal navigation
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+            isArrowUpPressed = false;
+            arrowUpPressTime = 0;
+            // Cancel the pending toggle check since key was released
+            h.removeCallbacks(hotelModeToggleRunnable);
+            // Don't consume the event, let it propagate for normal navigation
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
+    private final Runnable hotelModeToggleRunnable = new Runnable() {
+        @Override
+        public void run() {
+            // Check if key is still being pressed (not released early)
+            if (isArrowUpPressed) {
+                // Toggle hotel mode
+                isHotelMode = !isHotelMode;
+                pref.edit().putBoolean("hotel_mode", isHotelMode).apply();
+                updateHotelModeUI();
+            }
+        }
+    };
+
+    private void updateHotelModeUI() {
+        if (isHotelMode) {
+            // Hide All Apps and Settings buttons
+            binding.lvMainAll.setVisibility(View.GONE);
+            binding.lvMainSettings.setVisibility(View.GONE);
+        } else {
+            // Show All Apps and Settings buttons
+            binding.lvMainAll.setVisibility(View.VISIBLE);
+            binding.lvMainSettings.setVisibility(View.VISIBLE);
+        }
+        // Trigger adapter refresh to update Edit button visibility
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
         }
     }
 }
