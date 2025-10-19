@@ -50,8 +50,34 @@ Wallpaper is [Mountain dew during sunrise](https://unsplash.com/photos/mountain-
 ```
 
 The built APKs will be available in:
-- `app/build/outputs/apk/debug/` - Debug APKs
-- `app/build/outputs/apk/release/` - Release APKs
+- `app/build/outputs/apk/debug/` - Debug APKs (signed)
+- `app/build/outputs/apk/release/` - Release APKs (signed)
+
+**Note:** All builds are signed with a consistent key to allow seamless updates:
+- **Local development**: Uses the debug keystore (`~/.android/debug.keystore`)
+- **GitHub Actions**: Uses a custom release keystore if configured via secrets, otherwise falls back to debug keystore
+
+#### Configuring Release Signing for GitHub Actions
+
+To use a custom signing key for releases built on GitHub Actions:
+
+1. **Generate a keystore** (if you don't have one):
+   ```bash
+   keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
+   ```
+
+2. **Encode the keystore to base64**:
+   ```bash
+   base64 -w 0 release.keystore > release.keystore.base64
+   ```
+
+3. **Add GitHub Secrets** to your repository (Settings → Secrets and variables → Actions):
+   - `KEYSTORE_BASE64`: The base64-encoded keystore file content
+   - `KEYSTORE_PASSWORD`: Your keystore password
+   - `KEY_ALIAS`: Your key alias (e.g., "release")
+   - `KEY_PASSWORD`: Your key password
+
+Once configured, all builds (both debug and release) will be signed with the same key, allowing seamless updates without signature mismatches.
 
 #### Multi-ABI Support
 The project is configured to build separate APKs for different CPU architectures:
