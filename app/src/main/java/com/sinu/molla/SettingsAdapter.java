@@ -184,7 +184,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
         @Override
         public void onFocusChange(View view, boolean hasFocus) {
             if (hasFocus) {
-                view.setForeground(androidx.core.content.ContextCompat.getDrawable(context, R.drawable.outline));
+                view.setForeground(ContextCompat.getDrawable(context, R.drawable.outline));
             } else {
                 view.setForeground(null);
             }
