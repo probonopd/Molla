@@ -50,10 +50,17 @@ Wallpaper is [Mountain dew during sunrise](https://unsplash.com/photos/mountain-
 ```
 
 The built APKs will be available in:
-- `app/build/outputs/apk/debug/` - Debug APKs
-- `app/build/outputs/apk/release/` - Release APKs
+- `app/build/outputs/apk/debug/` - Debug APKs (signed, ready to install)
+- `app/build/outputs/apk/release/` - Release APKs (unsigned)
 
-**Note:** Release APKs are signed with the Android debug keystore by default for local testing and development. This allows them to be installed via ADB without additional signing steps. For production releases to Google Play Store, configure a custom signing key.
+**Note:** For local testing and development, use **debug APKs** which are automatically signed and can be installed via ADB:
+```bash
+adb install app/build/outputs/apk/debug/app-armeabi-v7a-debug.apk
+```
+
+Release APKs are unsigned by default. To install a release APK, either:
+1. Uninstall any existing version of the app first, then sign the APK manually
+2. Configure a custom signing key in `app/build.gradle` for release builds
 
 #### Multi-ABI Support
 The project is configured to build separate APKs for different CPU architectures:
